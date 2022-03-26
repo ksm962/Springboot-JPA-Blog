@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BlongControllerTest {
 
-	//http://localhost:8081/test/hello
+	//http://localhost:8000/test/hello
 	@GetMapping("/test/hello")
 	public String hello() {
 		return "<h1>hello spring boot</h>";
