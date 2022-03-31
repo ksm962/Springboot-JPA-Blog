@@ -10,6 +10,7 @@ public class BoardController {
 
 	@GetMapping({"","/"})
 	public String index() {
+		// /web-inf/views/index.jsp
 		return "index";
 	}
 }
