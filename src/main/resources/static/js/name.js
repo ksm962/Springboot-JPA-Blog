@@ -4,6 +4,9 @@ let index = {
 		$("#btn-save").on("click", () => {
 			this.save();
 		});
+		$("#btn-update").on("click", () => {
+			this.update();
+		});
 	},
 
 	save: function() {
@@ -30,7 +33,30 @@ let index = {
 			}).fail(function(error){
 				alert(JSON.stringify(error));
 			});
+		},
+		update: function() {
+			let data = {
+				id:$("#id").val(),
+				password: $("#password").val(),
+				email: $("#email").val()
+			}
+			$.ajax({
+				type: "put",
+				url: "/name/update",
+				data:JSON.stringify(data), //http body데이터
+				contentType: "application/json; charset=urf-8", //body데이터가 어떤 타입인지(mime)
+				dataType: "json" //요청을 서버로해서 응답이 왔을때 기본적으로 문자열(json이면 -> javascript)
+			}).done(function(resp){
+				alert("회원수정이 완료되었습니다.");
+				console.log(resp);
+				location.href="/"
+			}).fail(function(error){
+				alert(JSON.stringify(error));
+			});
 		}
+		
+		
+		
 }
 
 index.init();

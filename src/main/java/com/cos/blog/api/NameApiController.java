@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,13 @@ public class NameApiController {
 		 nameService.회원가입(name);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); //성공했다는것이 200
 		//자바오브젝트를 json으로 변환해서 리턴(jackson)
+	}
+	@PutMapping("/name/update")
+	public ResponseDto<Integer> update(@RequestBody Name name) {
+		 nameService.회원수정(name);
+		 
+		 
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); //성공했다는것이 200
 	}
 	
 	

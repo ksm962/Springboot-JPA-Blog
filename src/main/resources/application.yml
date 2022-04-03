@@ -24,7 +24,7 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
     #구문보여줌
-    show-sql: true
+    #show-sql: true
     properties:
       #정렬    
       hibernate.format_sql: true

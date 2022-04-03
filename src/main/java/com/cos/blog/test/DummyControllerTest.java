@@ -79,11 +79,11 @@ public class DummyControllerTest {
 		return null;
 	}
 	@GetMapping("/dummy/name")
-	public List<Name> pageList(@PageableDefault(size = 2, direction = Sort.Direction.DESC)Pageable pageable){
+	public Page<Name> pageList(@PageableDefault(size = 2, direction = Sort.Direction.DESC)Pageable pageable){
 		Page<Name> pagingName =  nameRepository.findAll(pageable);
 		
 		List<Name> names = pagingName.getContent();
-		return names;
+		return pagingName;
 	}
 	
 	

@@ -1,7 +1,9 @@
 package com.cos.blog.controller;
 
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class NameController {
@@ -17,7 +19,11 @@ public class NameController {
 	
 	@GetMapping("/auth/loginForm")
 	public String loginForm(){
-		
 		return "name/loginForm";
 	}
+	@GetMapping({"/name/updateForm"})
+	public String updateForm() {
+		return "name/updateForm";
+	}
+	
 }
