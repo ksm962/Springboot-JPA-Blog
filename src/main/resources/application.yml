@@ -39,8 +39,9 @@ spring:
     username: cos
     password: 1234
 
-  
-
+#노출 x
+cos:
+  key: cos1234
   
   
   

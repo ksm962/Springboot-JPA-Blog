@@ -1,15 +1,13 @@
 package com.cos.blog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cos.blog.model.Board;
+
 import com.cos.blog.model.Name;
 import com.cos.blog.model.RoleType;
 import com.cos.blog.repository.NameRepository;
@@ -23,7 +21,14 @@ public class NameService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	
+	@Transactional(readOnly = true)
+	public Name 회원찾기(String username) {
+		Name name = nameRepository.findByUsername(username).orElseGet(()->{
+			return new Name();
+		});
+		
+		return name;
+	}
 	
 	@Transactional
 	public void 회원가입(Name name) {
@@ -42,10 +47,16 @@ public class NameService {
 				.orElseThrow(()->{
 					return new IllegalArgumentException("회원찾기실패");
 				}); //영속화 완료
-		String rawPassword = name.getPassword(); // 1234 원문
-		String encPassword = encoder.encode(rawPassword); // 해쉬
-		persistance.setPassword(encPassword);
-		persistance.setEmail(name.getEmail());
+		
+		//validate 체크 => oauth 필드에 값이 없으면 수정가능
+		if(persistance.getOauth() == null || persistance.getOauth().equals("")) {
+			String rawPassword = name.getPassword(); // 1234 원문
+			String encPassword = encoder.encode(rawPassword); // 해쉬
+			persistance.setPassword(encPassword);
+			persistance.setEmail(name.getEmail());
+		}
+	
+
 		
 
 		//회원수정 함수 종료 = 서비스 종료 = 트랜잭션 종료 = commit

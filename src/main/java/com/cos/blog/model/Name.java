@@ -40,7 +40,7 @@ public class Name {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다. 시퀀스,오토
 	private int id; //시퀸스
 	
-	@Column(nullable = false, length = 30, unique = true)
+	@Column(nullable = false, length = 100, unique = true)
 	private String username;
 	
 	@Column(nullable = false, length = 100)
@@ -49,6 +49,7 @@ public class Name {
 	@Column(nullable = false, length = 50)
 	private String email;
 	
+	private String oauth; //kakao, google
 	//@ColumnDefault("user")
 	
 	//DB는 RoleType이라는게 없어서 알려줘야된다.
