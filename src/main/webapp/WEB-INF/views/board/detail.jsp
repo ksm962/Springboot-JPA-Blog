@@ -19,27 +19,33 @@
 	</c:if>
 	<button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
 
-	<div>
-		<div>
+
+	<div class="card">
+		<form>
+			<input type="hidden" id="nameid"  value="${principal.name.id }" />
+			<input type="hidden" id="boardid"  value="${board.id }" />
 			<div class="card-body">
-				<textarea class="form-control" row="1"></textarea>
+				<textarea id="reply-content" class="form-control" row="1"></textarea>
 			</div>
 			<div class="card-footer">
-				<button class="btn btn-primary">등록</button>
+				<button type="button" class="btn btn-primary" id="btn-reply-save">등록</button>
 			</div>
-		</div>
 	</div>
+	</form>
+
 
 	<div class="card">
 		<div class="card-header">댓글 리스트</div>
-		<ul id="comment--box" class="list-group">
-			<li id ="comment--1" class="list-group-item d-flex justify-content-between">
-				<div>댓글내용입니다.</div>
-				<div class="d-flex">
-					<div class="font-italic">작성자 : ssarmango &nbsp;</div>
-					<button class="badge">삭제</button>
-				</div>
-			</li>
+		<ul id="reply--box" class="list-group">
+			<c:forEach var="reply" items="${board.replys}">
+				<li id="reply--1" class="list-group-item d-flex justify-content-between">
+					<div>${reply.content }</div>
+					<div class="d-flex">
+						<div class="font-italic">작성자 :${reply.name.username } &nbsp;</div>
+						<button class="badge">삭제</button>
+					</div>
+				</li>
+			</c:forEach>
 		</ul>
 	</div>
 </div>

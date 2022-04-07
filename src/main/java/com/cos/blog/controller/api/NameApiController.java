@@ -1,4 +1,4 @@
-package com.cos.blog.api;
+package com.cos.blog.controller.api;
 
 import javax.servlet.http.HttpSession;
 

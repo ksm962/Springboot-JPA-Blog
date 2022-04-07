@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -23,8 +24,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
-
 @Builder
 @Data
 @NoArgsConstructor
@@ -34,10 +33,17 @@ import lombok.NoArgsConstructor;
 @Entity // User 클래스가 오라클에 테이블이 생성이 된다.
 @Table(name = "Name")
 //@DynamicInsert insert 시에 null인 필드는 제외
+@SequenceGenerator(
+        name="Name_SEQ_GEN", //시퀀스 제너레이터 이름
+        sequenceName="Name_SEQ", //시퀀스 이름
+        initialValue=1, //시작값
+        allocationSize=1 //메모리를 통해 할당할 범위 사이즈
+        )
 public class Name {
 
 	@Id // 기본키
-	@GeneratedValue(strategy = GenerationType.SEQUENCE) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다. 시퀀스,오토
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,
+									generator = "Name_SEQ_GEN") // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다. 시퀀스,오토
 	private int id; //시퀸스
 	
 	@Column(nullable = false, length = 100, unique = true)
