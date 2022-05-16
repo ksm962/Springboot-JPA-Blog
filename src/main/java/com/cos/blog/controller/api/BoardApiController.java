@@ -43,7 +43,7 @@ public class BoardApiController {
 			return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); //성공했다는것이 200
 	}
 	
-	@PutMapping("/api/board/{id}")
+	@PutMapping("/api/board/{id}") 
 	public ResponseDto<Integer> update(@PathVariable int id, 
 			@RequestBody Board board){ 	
 		System.out.println(board.getContent());
@@ -54,7 +54,7 @@ public class BoardApiController {
 	}
 	
 	
-	@PostMapping("/api/board/${boardid}/reply")
+	@PostMapping("/api/board/{boardid}/reply")
 	public ResponseDto<Integer> replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto ) {
 		boardService.댓글쓰기( replySaveRequestDto); //네임물고오기
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); //성공했다는것이 200

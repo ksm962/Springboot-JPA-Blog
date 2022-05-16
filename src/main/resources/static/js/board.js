@@ -75,7 +75,7 @@ let index = {
 		},
 		replySave: function() {
 			let data = {
-				nameid: $("#nameid").val(),
+				nameid: $("#nameid").val(), 
 				boardid: $("#boardid").val(),
 				content: $("#reply-content").val()
 			};
